@@ -53,7 +53,7 @@ Returns the information about the current user that is logged in.
 - Request
 
   - Method: GET
-  - Route path: /API/profile
+  - Route path: /users/:userID
   - Body: none
 
 - Successful Response when there is a logged in user
@@ -97,7 +97,7 @@ information.
 - Request
 
   - Method: POST
-  - Route path: /API/users/:userId
+  - Route path: /login/users/:userId
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -167,7 +167,7 @@ user's information.
 - Request
 
   - Method: POST
-  - Route path: /API/users
+  - Route path: /signup/users
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -247,7 +247,7 @@ Returns all the spots.
 - Request
 
   - Method: GET
-  - Route path: /API/spots
+  - Route path: /spots
   - Body: none
 
 - Successful Response
@@ -289,7 +289,7 @@ Returns all the spots owned (created) by the current user.
 - Request
 
   - Method: GET
-  - Route path: /API/profile/:userId/spots
+  - Route path: /users/:userId/spots
   - Body: none
 
 - Successful Response
@@ -331,7 +331,7 @@ Returns the details of a spot specified by its id.
 - Request
 
   - Method: GET
-  - Route path: /spots:spotId
+  - Route path: /spots/:spotId
   - Body: none
 
 - Successful Response
@@ -399,7 +399,7 @@ Creates and returns a new spot.
 - Request
 
   - Method: POST
-  - Route path: /API/spots
+  - Route path: /spots
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -475,8 +475,8 @@ Create and return a new image for a spot specified by id.
 - Require proper authorization: Spot must belong to the current user
 - Request
 
-  - Method: PUT
-  - Route path: /API/spots/:spotId
+  - Method: POST
+  - Route path: /spots/:spotId/images
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -525,7 +525,7 @@ Updates and returns an existing spot.
 - Request
 
   - Method: PUT
-  - Route path: /api/profile/spots/:spotId
+  - Route path: /spots/:spotId
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -615,7 +615,7 @@ Deletes an existing spot.
 - Request
 
   - Method: DELETE
-  - Route path: /API/profile/spots/:spotId
+  - Route path: /spots/:spotId
   - Body: none
 
 - Successful Response
@@ -654,7 +654,7 @@ Returns all the reviews written by the current user.
 - Request
 
   - Method: GET
-  - Route path: /API/profile/reviews
+  - Route path: /users/:userId/reviews
   - Body: none
 
 - Successful Response
@@ -712,7 +712,7 @@ Returns all the reviews that belong to a spot specified by id.
 - Request
 
   - Method: GET
-  - Route path: /API/spots/:spotId/reviews
+  - Route path: /spots/:spotId/reviews
   - Body: none
 
 - Successful Response
@@ -770,7 +770,7 @@ Create and return a new review for a spot specified by id.
 - Request
 
   - Method: POST
-  - Route path: /API/spots/:spotId/reviews
+  - Route path: /spots/:spotId/reviews
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -852,8 +852,8 @@ Create and return a new image for a review specified by id.
 - Require proper authorization: Review must belong to the current user
 - Request
 
-  - Method: PUT
-  - Route path: /API/reviews/:reviewId
+  - Method: POST
+  - Route path: /reviews/:reviewId/images
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -914,7 +914,7 @@ Update and return an existing review.
 - Request
 
   - Method: PUT
-  - Route path: /API/profile/reviews/:reviewId
+  - Route path: /reviews/:reviewId
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -984,7 +984,7 @@ Delete an existing review.
 - Request
 
   - Method: DELETE
-  - Route path: /API/profile/reviews/:reviewId
+  - Route path: /reviews/:reviewId
   - Body: none
 
 - Successful Response
@@ -1023,7 +1023,7 @@ Return all the bookings that the current user has made.
 - Request
 
   - Method: GET
-  - Route path: /API/profile/bookings
+  - Route path: /users/:userId/bookings
   - Body: none
 
 - Successful Response
@@ -1070,7 +1070,7 @@ Return all the bookings for a spot specified by id.
 - Request
 
   - Method: GET
-  - Route path: /API/profile/spots/:spotId/bookings
+  - Route path: /spots/:spotId/bookings
   - Body: none
 
 - Successful Response: If you ARE NOT the owner of the spot.
@@ -1142,7 +1142,7 @@ Create and return a new booking from a spot specified by id.
 - Request
 
   - Method: POST
-  - Route path: /API/profile/spots/:spotId/bookings
+  - Route path: /spots/:spotId/bookings
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1229,7 +1229,7 @@ Update and return an existing booking.
 - Request
 
   - Method: PUT
-  - Route path: /API/profile/bookings/:bookingId
+  - Route path: /bookings/:bookingId
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -1330,7 +1330,7 @@ Delete an existing booking.
 - Request
 
   - Method: DELETE
-  - Route path: /API/profile/bookings/:bookingId
+  - Route path: /bookings/:bookingId
   - Body: none
 
 - Successful Response
@@ -1382,8 +1382,8 @@ Delete an existing image for a Spot.
 - Require proper authorization: Spot must belong to the current user
 - Request
 
-  - Method: PUT
-  - Route path: /API/profile/spots/:spotId
+  - Method: DELETE
+  - Route path: /spots/:spotId/images/:imageId
   - Body: none
 
 - Successful Response
@@ -1420,8 +1420,8 @@ Delete an existing image for a Review.
 - Require proper authorization: Review must belong to the current user
 - Request
 
-  - Method: PUT
-  - Route path: /API/profile/reviews/:reviewId
+  - Method: DElETE
+  - Route path: /reviews/:reviewId/images/:imageId
   - Body: none
 
 - Successful Response
@@ -1458,7 +1458,7 @@ Return spots filtered by query parameters.
 - Request
 
   - Method: GET
-  - Route path: /API/spots
+  - Route path: /spots
   - Query Parameters
     - page: integer, minimum: 1, default: 1
     - size: integer, minimum: 1, maximum: 20, default: 20
