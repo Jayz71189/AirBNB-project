@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 
-router.post("/", async (req, res) => {
+// app.get("/", async (req, res) => {
+//     let { firstName, lastName, email, username}
+
+app.post("/", async (req, res) => {
   let { firstName, lastName, email, username } = req.body;
 
   const user = await User.create({
